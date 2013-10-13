@@ -1,4 +1,4 @@
-@import url("fonts.googleapis.com/css?family=Lato:400,400italic");
+@import url("//fonts.googleapis.com/css?family=Lato:400,400italic");
 @font-face {
   font-family: 'FontAwesome';
   font-style: normal;
@@ -10,10 +10,10 @@
   padding: 0;
 }
 body {
-  background: #fff;
+  background: #eee;
   color: #444;
-  font-family: "微软雅黑", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-  font-size: 16px;
+  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-size: 14px;
   text-shadow: 0 0 1px transparent;
 }
 @media screen and (max-width: 1260px) {
@@ -32,7 +32,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "微软雅黑", "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 h1 {
   font-size: 1.8em;
@@ -45,7 +45,7 @@ h3 {
 }
 a {
   text-decoration: none;
-  color: #2d89ef;
+  color: #258fb8;
 }
 a:hover {
   text-decoration: underline;
@@ -68,7 +68,7 @@ a:hover {
   clear: both;
 }
 .inner {
-  width: 960px;
+  width: 1200px;
   margin: 0 auto;
 }
 @media screen and (max-width: 1260px) {
@@ -102,8 +102,15 @@ a:hover {
   }
 }
 #header {
-  background: #fff;
-  margin: 0 auto;
+  text-shadow: 0 0 1px #fff;
+  margin: 50px auto;
+}
+#header a {
+  color: #999;
+}
+#header a:hover {
+  color: #258fb8;
+  text-decoration: none;
 }
 #header h1 {
   font-weight: normal;
@@ -112,31 +119,13 @@ a:hover {
 }
 #header h2 {
   font-weight: normal;
-  font-size: 1.2em;
+  font-size: 0.9em;
   line-height: 1;
   margin-top: 10px;
 }
-#header #header-title {
-  margin: 20px auto;
-}
-#header #header-title a {
-  color: #2d89ef;
-}
-#header #header-title a:hover {
-  color: #2d89ef;
-  text-decoration: none;
-}
 #header #main-nav {
-  background: #2d89ef;
-  font-family: "微软雅黑", "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
-  line-height: 3em;
-}
-#header #main-nav a {
-  color: #fff;
-}
-#header #main-nav a:hover {
-  color: #fff;
-  text-decoration: none;
+  font-family: "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
+  line-height: 2.5em;
 }
 #header #main-nav ul {
   list-style: none;
@@ -145,82 +134,9 @@ a:hover {
   float: left;
   margin-left: 30px;
 }
-#sidebar {
-  width: 100%;
-  line-height: 1.8em;
-}
-@media screen and (max-width: 900px) {
-  #sidebar {
-    float: none;
-    width: 100%;
-  }
-}
-#sidebar .widget {
-  width: 300px;
-  float: left;
-  background: #fff;
-  margin-bottom: 30px;
-  word-wrap: break-word;
-}
-#sidebar .widget .title {
-  padding: 15px 20px;
-  font-size: 1em;
-  border-bottom: 1px solid #ddd;
-  font-weight: normal;
-}
-#sidebar .widget .entry {
-  font-size: 0.9em;
-  padding: 15px 20px;
-}
-#sidebar .widget ul,
-#sidebar .widget ol,
-#sidebar .widget dl {
-  list-style: none;
-}
-#sidebar .widget ul ul,
-#sidebar .widget ol ul,
-#sidebar .widget dl ul,
-#sidebar .widget ul ol,
-#sidebar .widget ol ol,
-#sidebar .widget dl ol,
-#sidebar .widget ul dl,
-#sidebar .widget ol dl,
-#sidebar .widget dl dl {
-  list-style: disc;
-  margin-left: 20px;
-}
-#sidebar .tag small {
-  margin-left: 15px;
-  color: #999;
-}
-#sidebar .tag small:before {
-  content: '(';
-}
-#sidebar .tag small:after {
-  content: ')';
-}
-#sidebar .twitter li {
-  border-bottom: 1px solid #ddd;
-  padding: 15px 20px;
-  font-size: 0.9em;
-}
-#sidebar .twitter li:last-of-type {
-  border-bottom: none;
-}
-#sidebar .twitter small {
-  display: block;
-  margin-top: 10px;
-  color: #999;
-  line-height: 1;
-}
-#sidebar .tagcloud .entry {
-  padding-right: 5px;
-}
-#sidebar .tagcloud a {
-  margin-right: 10px;
-  display: inline-block;
-}
 article {
+  -webkit-box-shadow: 1px 2px 3px #ddd;
+  box-shadow: 1px 2px 3px #ddd;
   background: #fff;
 }
 article.page {
@@ -325,7 +241,7 @@ article header .icon {
   position: absolute;
   top: 20px;
   left: 20px;
-  color: #2d89ef;
+  color: #258fb8;
 }
 @media screen and (max-width: 600px) {
   article header .icon {
@@ -342,7 +258,7 @@ article header .icon:before {
 }
 article header time {
   color: #999;
-  font: 0.9em "微软雅黑", "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
+  font: 0.9em "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
   margin-bottom: 5px;
   display: block;
   line-height: 1;
@@ -351,10 +267,10 @@ article header .title {
   font-weight: normal;
 }
 article header .title a {
-  color: #2d89ef;
+  color: #444;
 }
 article header .title a:hover {
-  color: #2d89ef;
+  color: #258fb8;
   text-decoration: none;
 }
 article .entry {
@@ -401,18 +317,23 @@ article .entry pre {
   font-family: Monaco, Menlo, Consolas, Courier New, monospace;
 }
 article .entry code {
-  background: #eff4ff;
+  background: #eee;
   color: #666;
   padding: 0 5px;
   margin: 0 2px;
   font-size: 0.9em;
+  border: 1px solid #ddd;
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 article .entry pre {
-  background: #eff4ff;
+  background: #eee;
+  border: 1px solid #ddd;
+  margin-top: 15px;
   overflow: auto;
   padding: 7px 15px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
 }
 article .entry pre code {
   background: none;
@@ -516,7 +437,7 @@ article footer a {
   color: #999;
 }
 article footer a:hover {
-  color: #2d89ef;
+  color: #258fb8;
   text-decoration: none;
 }
 article footer a:before {
@@ -560,6 +481,8 @@ article footer .addthis iframe {
 #comment {
   padding: 20px;
   background: #fff;
+  -webkit-box-shadow: 1px 2px 3px #ddd;
+  box-shadow: 1px 2px 3px #ddd;
   margin-bottom: 50px;
 }
 #comment .title {
@@ -571,12 +494,12 @@ article footer .addthis iframe {
   padding: 5px 10px;
   background: #ddd;
   color: #999;
-  font-family: "微软雅黑", "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
   text-shadow: 0 0 1px #fff;
   margin-bottom: 50px;
 }
 #pagination a:hover {
-  background: #2d89ef;
+  background: #258fb8;
   color: #fff;
   text-decoration: none;
   text-shadow: none;
@@ -621,15 +544,113 @@ article footer .addthis iframe {
 .archive article .post-content {
   margin-bottom: 0;
 }
+#sidebar {
+  width: 270px;
+  line-height: 1.8em;
+}
+@media screen and (max-width: 900px) {
+  #sidebar {
+    float: none;
+    width: 100%;
+  }
+}
+#sidebar .widget {
+  background: #fff;
+  -webkit-box-shadow: 1px 2px 3px #ddd;
+  box-shadow: 1px 2px 3px #ddd;
+  margin-bottom: 30px;
+  word-wrap: break-word;
+}
+#sidebar .widget .title {
+  padding: 15px 20px;
+  font-size: 1em;
+  border-bottom: 1px solid #ddd;
+  font-weight: normal;
+}
+#sidebar .widget .entry {
+  font-size: 0.9em;
+  padding: 15px 20px;
+}
+#sidebar .widget ul,
+#sidebar .widget ol,
+#sidebar .widget dl {
+  list-style: none;
+}
+#sidebar .widget ul ul,
+#sidebar .widget ol ul,
+#sidebar .widget dl ul,
+#sidebar .widget ul ol,
+#sidebar .widget ol ol,
+#sidebar .widget dl ol,
+#sidebar .widget ul dl,
+#sidebar .widget ol dl,
+#sidebar .widget dl dl {
+  list-style: disc;
+  margin-left: 20px;
+}
+#sidebar .search {
+  margin-bottom: 30px;
+}
+#sidebar .search input {
+  background: #fff;
+  font-family: "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-style: italic;
+  font-size: 1em;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #999;
+}
+#sidebar .search input:focus {
+  color: #444;
+}
+#sidebar .tag small {
+  margin-left: 15px;
+  color: #999;
+}
+#sidebar .tag small:before {
+  content: '(';
+}
+#sidebar .tag small:after {
+  content: ')';
+}
+#sidebar .twitter li {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 20px;
+  font-size: 0.9em;
+}
+#sidebar .twitter li:last-of-type {
+  border-bottom: none;
+}
+#sidebar .twitter small {
+  display: block;
+  margin-top: 10px;
+  color: #999;
+  line-height: 1;
+}
+#sidebar .tagcloud .entry {
+  padding-right: 5px;
+}
+#sidebar .tagcloud a {
+  margin-right: 10px;
+  display: inline-block;
+}
 #footer {
   color: #999;
   margin-bottom: 50px;
-  font: 0.9em/1.6 "微软雅黑", "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
+  font: 0.9em/1.6 "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
   text-shadow: 0 0 1px #fff;
 }
 .entry .gist {
-  background: #eff4ff;
+  background: #eee;
+  border: 1px solid #ddd;
+  margin-top: 15px;
   padding: 7px 15px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
   text-shadow: 0 0 1px #fff;
   line-height: 1.6;
   overflow: auto;
@@ -658,14 +679,18 @@ article footer .addthis iframe {
   font-size: 100%;
 }
 .entry .gist .gist-file .gist-meta a {
-  color: #2d89ef;
+  color: #258fb8;
 }
 .entry .gist .gist-file .gist-meta a:visited {
-  color: #2d89ef;
+  color: #258fb8;
 }
 figure.highlight {
-  background: #eff4ff;
+  background: #eee;
+  border: 1px solid #ddd;
+  margin-top: 15px;
   padding: 7px 15px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
   text-shadow: 0 0 1px #fff;
   line-height: 1.6;
   overflow: auto;

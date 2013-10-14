@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【android studio】project默认jdk设置错误 | wheam</title>
+  <meta name="author" content="wheam">
+  
+  <meta name="description" content="好吧，请叫我“天天偷懒好久不更新博客渣渣君”，好嘛，好不容易更新还出个错误解决是不是很令人失望啊。。。其实不是的！！！我已经准备了好多好多，好多好多的经验要分享，偷懒没写而已嘛。。。
+今天重装了win7（没SSD了好忧伤），编译project的时候总是报错，研究了一下，发现是project default setting的设置错误。
+报错情况：
+Cannot run program &quot;C:\Program Files\Java\jdk1.7.0_04\bin\java“ (in directory ”C:\Program Files (x86)\Android\android-studio\system\compile-server&quot;): CreateProcess error=2, ϵͳÕҲ»µ½ָ¶
+因为我更想了jdk到1.7.0_25，但是android studio是默认导入的，so必须在启动的时候设置project default setting。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="【android studio】project默认jdk设置错误"/>
+  <meta property="og:site_name" content="wheam"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="wheam" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">wheam</a></h1>
+  <h2><a href="/">What I do that defines me</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-03T17:46:58.000Z"><a href="/2013/07/04/【android-studio】project默认jdk设置错误/">Jul 4 2013</a></time>
+      
+      
+  
+    <h1 class="title">【android studio】project默认jdk设置错误</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>好吧，请叫我“天天偷懒好久不更新博客渣渣君”，好嘛，好不容易更新还出个错误解决是不是很令人失望啊。。。其实不是的！！！我已经准备了好多好多，好多好多的经验要分享，偷懒没写而已嘛。。。</p>
+<p>今天重装了win7（没SSD了好忧伤），编译project的时候总是报错，研究了一下，发现是project default setting的设置错误。</p>
+<p>报错情况：</p>
+<p>Cannot run program &quot;C:\Program Files\Java\jdk1.7.0_04\bin\java“ (in directory ”C:\Program Files (x86)\Android\android-studio\system\compile-server&quot;): CreateProcess error=2, ϵͳÕҲ»µ½ָ¶</p>
+<p>因为我更想了jdk到1.7.0_25，但是android studio是默认导入的，so必须在启动的时候设置project default setting。<br><a id="more"></a></p>
+<p>【步骤1】打开欢迎画面，选择configure   </p>
+<p><a href="http://wheam.me/wp-content/uploads/2013/07/1.jpg" target="_blank"><img src="http://wheam.me/wp-content/uploads/2013/07/1.jpg" alt="1"></a></p>
+<p>【步骤2】进入Project Defaults</p>
+<p><a href="http://wheam.me/wp-content/uploads/2013/07/2.jpg" target="_blank"><img src="http://wheam.me/wp-content/uploads/2013/07/2.jpg" alt="2"></a></p>
+<p>【步骤3】选择project structure，选择sdks</p>
+<p><a href="http://wheam.me/wp-content/uploads/2013/07/3.jpg" target="_blank"><img src="http://wheam.me/wp-content/uploads/2013/07/3.jpg" alt="3"></a></p>
+<p>【步骤4】选择你的jdk版本，然后选择你的jdk home path，只要选择对了，再次编译项目就OK了</p>
+<p><a href="http://wheam.me/wp-content/uploads/2013/07/4.jpg" target="_blank"><img src="http://wheam.me/wp-content/uploads/2013/07/4.jpg" alt="4"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/android/">android</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"wheam"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:wheam.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/android/">android</a><small>8</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>2</small></li>
+  
+    <li><a href="/categories/原创/">原创</a><small>2</small></li>
+  
+    <li><a href="/categories/心情/">心情</a><small>9</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="100" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=100&fansRow=1&ptype=1&speed=50&skin=5&isTitle=1&noborder=0&isWeibo=0&isFans=0&uid=1826358844&verifier=b2640eff&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 wheam
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

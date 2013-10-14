@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hadoop Learning Notes —— 简介和环境搭建 | wheam</title>
+  <meta name="author" content="wheam">
+  
+  <meta name="description" content="进行了三天惨无人道的hadoop学习，应该是得留下点什么，打算出一个系列《Hadoop Learning Notes》，介绍一下本次学习主要使用到的HBase和MapReduce，HDFS虽然不太用得上，但是在搭建环境的时候必须要有，也开一篇简单的文章吧，HBase和MapReduce我会尽量给出示例代码。
+ 第一篇是简介和环境搭建，简介其实不太想写，百度百科和wiki已经非常好了，不过我还是想把自己的理解整理一下，不一定是完全正确，但是好歹是我学习的结晶，以后再看或许会有些感触。环境搭建是个很重要的环节，这里给出的示例是自己亲手尝试并且成功的经验，参考了一些大神的文章。 第二篇是HBase，会简单介绍HBase的原理（—！我自己也才入门，只能讲讲），并且我会给出一个示例代码，演示直接在集群上操作HBase。PS.第一次接触NoSql，表示很新奇！ 第三篇是MapReduce，并行运算的关键，也是我需要深入研究的部分，我可能会不只出一篇，而且这东西确实我包括XDCCL的研究生在内都不怎么熟悉，可能会有些不对的地方，望见谅。 第四篇是HDFS，我会给出一些示例，但是不会保证这一定是对的，因为我在项目中基本使用不到HDFS，而且分布式文件系统有时候也没那么广的适用范围。 好吧，开始正题喽。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Hadoop Learning Notes —— 简介和环境搭建"/>
+  <meta property="og:site_name" content="wheam"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="wheam" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">wheam</a></h1>
+  <h2><a href="/">What I do that defines me</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-01-03T16:47:45.000Z"><a href="/2013/01/04/hadoop-learning-notes-简介和环境搭建/">Jan 4 2013</a></time>
+      
+      
+  
+    <h1 class="title">Hadoop Learning Notes —— 简介和环境搭建</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>进行了三天惨无人道的hadoop学习，应该是得留下点什么，打算出一个系列《Hadoop Learning Notes》，介绍一下本次学习主要使用到的HBase和MapReduce，HDFS虽然不太用得上，但是在搭建环境的时候必须要有，也开一篇简单的文章吧，HBase和MapReduce我会尽量给出示例代码。</p>
+<div> </div><br><div>第一篇是简介和环境搭建，简介其实不太想写，百度百科和wiki已经非常好了，不过我还是想把自己的理解整理一下，不一定是完全正确，但是好歹是我学习的结晶，以后再看或许会有些感触。</div><br><div>环境搭建是个很重要的环节，这里给出的示例是自己亲手尝试并且成功的经验，参考了一些大神的文章。</div><br><div> </div><br><div>第二篇是HBase，会简单介绍HBase的原理（—！我自己也才入门，只能讲讲），并且我会给出一个示例代码，演示直接在集群上操作HBase。PS.第一次接触NoSql，表示很新奇！</div><br><div> </div><br><div>第三篇是MapReduce，并行运算的关键，也是我需要深入研究的部分，我可能会不只出一篇，而且这东西确实我包括XDCCL的研究生在内都不怎么熟悉，可能会有些不对的地方，望见谅。</div><br><div> </div><br><div>第四篇是HDFS，我会给出一些示例，但是不会保证这一定是对的，因为我在项目中基本使用不到HDFS，而且分布式文件系统有时候也没那么广的适用范围。</div><br><div> </div><br><div>好吧，开始正题喽。</div><br><a id="more"></a><br><div> </div><br><div>一、简介：</div><br><div>     接下来的都是凭借个人理解拟写，为了保证各位看官认知的准确性，关于hadoop的准确介绍，请看wiki：<a href="http://zh.wikipedia.org/wiki/Hadoop" target="_blank">http://zh.wikipedia.org/wiki/Hadoop</a> 或者将就下百度百科<a href="http://baike.baidu.com/view/908354.htm。" target="_blank">http://baike.baidu.com/view/908354.htm。</a></div><br><div>     想要学习了解hadoop的推荐EasyHadoop社区<a href="http://www.easyhadoop.org/包括EasyHadoop开源社区3号群145680489。" target="_blank">http://www.easyhadoop.org/包括EasyHadoop开源社区3号群145680489。</a></div><br><div> </div><br><div>     hadoop是一个apache开发维护的分布式基础架构，但是其实hadoop并不能算是一个真正的云平台，主要用于在搜索，分布式存储，分布式计算等方面，优点是可靠且能够使用低廉的计算设备构建集群。</div><br><div>     hadoop的MapReduce，HBase，HDFS是受到google lab的Map/Reduce，BigTable，GFS（Google File System）的启发开发的，前者分别是后者的开源实现（google V5）。</div><br><div> </div><br><div>     集群：hadoop对集群要求很低，甚至可以在一台笔记本上模拟单机或者伪分布式集群，而如果你有多台计算机，完全可以部署一个小型的hadoop集群。hadoop集群基于Linux环境，主要使用java语言开发。</div><br><div> </div><br><div>     HDFS：Hadoop Distributed File System，hadoop的分布式文件系统，由一个NameNode和很多个DataNode组成，由NameNode控制文件系统的名称空间，Client的访问和复制快的映射；DataNode相应来自NameNode的命令，创建，复制，删除文件块，并且由心跳包控制，在断开心跳包的时候，NameNode会复制该DataNode上的文件块，HDFS可靠性的由来。</div><br><div> </div><br><div>     HBase：一个分布式面向列的NoSql，非结构化存储数据库，使用Table存储，适用于对超大规模数据集的实时随机读写，需要采用MapReduce对其存储的海量数据进行处理。HBase提供了十分简单的API用于存取管理。</div><br><div> </div><br><div>     MapReduce：MapReduce是构建在HDFS上的大规模并行处理计算框架，将所有运行于集群上的计算抽象为Map和Reduce两个函数，将处理的数据集分解为多个小数据集，完全并行运算。</div><br><div> </div><br><div>     F&amp;Q</div><br><div>     Q：Hadoop有什么用？</div><br><div>     A：低廉的构建分布式计算架构，搭建集群，解决大数据和并行运算问题。</div><br><div>     Q：Hadoop的优缺点？</div><br><div>     A：优点是可靠，易扩展，低廉，缺点是并不是一个真正的云平台，而且使用范围有限。</div><br><div>     Q：Hadoop和其他云平台如OpenStack，CloudStack等对比？</div><br><div>     A：推荐个文章吧<a href="http://wenku.baidu.com/view/887588b9c77da26925c5b0bc.html，其他自己搜索吧，总之，OpenStack是主流。" target="_blank">http://wenku.baidu.com/view/887588b9c77da26925c5b0bc.html，其他自己搜索吧，总之，OpenStack是主流。</a></div><br><div>     Q：你初步接触了Hadoop最大的感受是什么？</div><br><div>     A：这是个简单易懂的平台，而且能够切实的解决SeeMore对大数据和高计算能力的要求，我觉得花上一段时间来学习使用很值得，可惜好的集群没那么容易得到。</div><br><div> </div><br><div> </div><br><div>二、Ubuntu下hadoop伪分布式环境搭建</div><br><div>     首先说，其实这个比想象中的简单，但是包括学习了解和尝试，我还是弄了差不多两天，其中遇到的版本问题让我们蛋疼不已。</div><br><div>     参照了此博客<a href="http://blog.sina.com.cn/s/blog_62186b4601011c6a.html" target="_blank">http://blog.sina.com.cn/s/blog_62186b4601011c6a.html</a></div><br><div> </div><br><div>     1、你需要准备Linux JDK环境，如果已经设置好，请获取JAVA_HOME地址；</div><br><div>     如果没有，请下载JDK 7u10 ，下载地址 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a> </div><br><div> </div><br><div><br><div>     具体配置参考这个吧，讲的十分详细了  <a href="http://blog.csdn.net/lorkoy/article/details/7931129" target="_blank">http://blog.csdn.net/lorkoy/article/details/7931129</a></div><br></div><br><div>     </div><br><div>     2、Hadoop安装文件，我使用的版本是hadoop0.20.203.0，下载地址有空再附上吧</div><br><div>     下载好后，解压放在 /home/username/   （username为你的账户名字，比如我的就是wheam）下，文件夹名为了方便，设置为hadoop。</div><br><div>     </div><br><div>     3、修改conf/hadoop-env.sh配置</div><br><div>          在terminal下，输入以下指令</div><br><div>               cd  /home/username/hadoop/conf    // 进入conf文件夹</div><br><div>               sudo gedit hadoop-env.sh    // 会要求输入密码，编辑你的hadoop-env.sh文件，我不会告诉你们我不会用vim</div><br><div>          此时系统会打开gedit编辑器，在文档的最后添加以下几句</div><br><div>               export JAVA_HOME=“步骤1中让你获取的JAVA_HOME地址”，一般默认为/usr/local/你的jdk版本号 </div><br><div>               export HADOOP_HOME=/home/username/hadoop</div><br><div>               export PATH=$PATH:/home/username/hadoop/bin</div><br><div> </div><br><div>          保存退出继续</div><br><div> </div><br><div> </div><br><div><span style="font-family: 微软雅黑;"><span style="color: #ff0000;">PS：</span>在编辑下述的三个xml文档的时候，楼主遇到了个神奇的错误，xml文档开头不能有空行，否则会报错，具体看这个文章</span><a href="http://hacklin.blogspot.com/2008/10/installing-hadoop-on-ubuntu.html" target="_blank"><a href="http://hacklin.blogspot.com/2008/10/installing-hadoop-on-ubuntu.html">http://hacklin.blogspot.com/2008/10/installing-hadoop-on-ubuntu.html</a></a><span style="font-family: 微软雅黑;"> （需要翻墙）</span></div><br><div> </div><br><div>     4、配置conf/core-site.xml</div><br><div>          此时如果你是按照步骤来的，那么你还是在/home/username/hadoop/conf 下，如果不是，再次输入命令cd  /home/username/hadoop/conf </div><br><div>          然后输入</div><br><div>          sudo gedit core-site.xml</div><br><div>          接着打开编辑器之后，删除以前的所有内容，输入这段xml代码，注意替换username为你的用户名<a href="https://gist.github.com/4449374" target="_blank">https://gist.github.com/4449374</a></div>
+
+<script src="https://gist.github.com/4449374.js"></script>
+
+<div> </div><br><div>     5、配置hdfs-site.xml</div><br><div>          保持在/home/username/hadoop/conf 下，输入</div><br><div>          sudo gedit hdfs-site.xml</div><br><div>          </div><br><div>          打开编辑器后删除所有内容，输入以下xml代码</div><br><div>          <a href="https://gist.github.com/4449385" target="_blank">https://gist.github.com/4449385</a></div><br><div>          </div><br><div> </div><br><script src="https://gist.github.com/4449385.js"></script><br><div> </div><br><div>     6、配置mapred-site.xml</div><br><div>          保持在/home/username/hadoop/conf 下，输入</div><br><div>          sudo gedit mapred-site.xml  </div><br><div>          </div><br><div>          打开编辑器后删除所有内容，输入以下xml代码<a href="https://gist.github.com/4449392" target="_blank">https://gist.github.com/4449392</a></div><br><div> </div><br><script src="https://gist.github.com/4449392.js"></script></p><br><div><span style="font-family: 微软雅黑;"><span style="color: #ff0000;">PS：重要修改</span> 由于JVM和Hadoop版本不一样的问题，后续使用sudo会报错，所以，</span></div><br><div><span style="font-family: 微软雅黑;">需要进行以下修改</span></div><br><div>         cd /home/username/hadoop/bin </div><br><div>         sudo gedit hadoop</div><br><div>         然后搜索jvm</div><br><div>          在</div><br><div>if [[ $EUID -eq 0 ]]; then</div>
+
+<pre><code>HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> -jvm server <span class="variable">$HADOOP_DATANODE_OPTS</span>"</span></code></pre>
+<p>   else<br>     HADOOP_OPTS=&quot;$HADOOP_OPTS -server $HADOOP_DATANODE_OPTS&quot;<br>   fi</p>
+<div>里面删除if [[ $EUID -eq 0 ]]; then</p><br><div>    HADOOP_OPTS=&quot;$HADOOP_OPTS -jvm server $HADOOP_DATANODE_OPTS&quot;<br>   else还有最后的fi</div><br><div> </div><br></div><br><div> </div><br><div>     7、格式化NameNode和DataNode</div><br><div>          输入命令</div><br><div>          cd /home/username/hadoop</div><br><div>          sudo bin/hadoop namenode -format</div><br><div>          sudo bin/hadoop datanode -format</div><br><div> </div><br><div>     8、启动所有hadoop进程</div><br><div>          保持在/home/username/hadoop 下输入命令</div><br><div>          sudo bin/start-all.sh </div><br><div>          中间会要求输入密码很多次，等我后面更新不需要密码验证的方法</div><br><div>          同样假如你要关闭hadoop的话，输入命令为：</div><br><div>          sudo bin/stop-all.sh</div><br><div>          </div><br><div>     9、查看hadoop运行情况</div><br><div>          保持在/home/username/hadoop 下输入命令</div><br><div>          jps</div><br><div>          如果正常情况，会现实有NameNode，DataNode，JobTracker，TaskTracker等</div><br><div> </div><br><div>     10、查看集群状态</div><br><div>          保持在/home/username/hadoop 下输入命令</div><br><div>          sudo bin/hadoop dfsadmin -report</div><br><div> </div><br><div>     11、测试WordCount程序</div><br><div>          </p><br><br>&nbsp;<br><br><div><br><div>          A、在hadoop/test下创建txt文件，并且输入多个单词</div><br><div>                cd /home/username/hadoop 并且一直保持在此文件夹内</div><br><div>                sudo  mkdir test       // 创建一个名为test的文件夹</div><br><div>                cd test</div><br><div>                sudo gedit test1.txt</div><br><div>                之后会打开编辑器，在编辑器内输入任意多个单词</div><br><div>               </div><br><div>          B、在HDFS下创建input文件夹</div><br><div>               sudo bin/hadoop fs -mkdir input   // 在HDFS下创建名为input的文件夹</div><br><div>               其他命令</div><br><div>               sudo bin/hadoop fs -ls  // 查看</div><br><div>               sudo bin/hadoop fs -rmr name  // 删除名为name的文件夹</div><br><div>               sudo bin/hadoop fs -rm name  // 删除名为name的文件</div><br><div> </div><br><div>          C、退出hadoop的安全模式，便于之后执行程序</div><br><div>               bin/hadoop dfsadmin -safemode leave</div><br><div> </div><br><div>          D、将test中我们写好的txt文件导入到HDFS中</div><br><div>               bin/hadoop fs -put /home/username/hadoop/test/<em> input</div><br><div>          </div><br><div>          E、执行hadoop自带的WordCount程序</div><br><div>               bin/hadoop jar hadoop-examples-0.20.203.0.jar wordcount input output</div><br><div> </div><br><div>          F、查看执行结果</div><br><div>               bin/hadoop dfs -cat output/</em></div><br></div><br></div><br><div> </div><br><div> </div><br><div> </div><br><div>好的，至此，Hadoop的环境已经搭建好了，可以开始hadoop开发了，但是其实远没有那么简单，敬请期待下一期的HBae介绍及Demo和MapReduce开发详解。</div><br><div> </div><br><div> </div><br><div> </div><br><div> </div><br><div> </div><br><div> </div><br><div> </div><br><div> </div>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/java/">java</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"wheam"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:wheam.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/android/">android</a><small>8</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>2</small></li>
+  
+    <li><a href="/categories/原创/">原创</a><small>2</small></li>
+  
+    <li><a href="/categories/心情/">心情</a><small>9</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="100" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=100&fansRow=1&ptype=1&speed=50&skin=5&isTitle=1&noborder=0&isWeibo=0&isFans=0&uid=1826358844&verifier=b2640eff&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 wheam
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

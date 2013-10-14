@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【android studio】离线更新方法和gradle报错解决 | wheam</title>
+  <meta name="author" content="wheam">
+  
+  <meta name="description" content="andorid studio确实是个坑啊，不建议新童鞋在preview版本的时候用于开发，除非你跟楼主一样纯粹为了好看 本文主要解决一些坑的，看了很久很久很久很久的stackoverflow加上各种搜索，现在整理一下解决办法。
+【离线更新】
+ps.由于android studio不提供0.1.9 - 0.2.0的升级包，so，你可以重新装了，0.2.0之后的更新下述应该还是可以使用的。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="【android studio】离线更新方法和gradle报错解决"/>
+  <meta property="og:site_name" content="wheam"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="wheam" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">wheam</a></h1>
+  <h2><a href="/">What I do that defines me</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-08T15:55:13.000Z"><a href="/2013/07/08/【android-studio】离线更新方法和gradle报错解决/">Jul 8 2013</a></time>
+      
+      
+  
+    <h1 class="title">【android studio】离线更新方法和gradle报错解决</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>andorid studio确实是个坑啊，不建议新童鞋在preview版本的时候用于开发，除非你跟楼主一样纯粹为了好看 本文主要解决一些坑的，看了很久很久很久很久的stackoverflow加上各种搜索，现在整理一下解决办法。</p>
+<p>【离线更新】</p>
+<p>ps.由于android studio不提供0.1.9 - 0.2.0的升级包，so，你可以重新装了，0.2.0之后的更新下述应该还是可以使用的。</p>
+<a id="more"></a>
+
+<p>参考文章：<a href="http://my.oschina.net/aquar/blog/141334" target="_blank"><a href="http://my.oschina.net/aquar/blog/141334">http://my.oschina.net/aquar/blog/141334</a></a></p>
+<p>其实这就是个坑啊，android studio 使用help - update会报网络连接错误，具体情况请看这篇帖子，上面有google工程师出来解决，不过反正我是字太多没怎么看</p>
+<p><a href="https://code.google.com/p/android/issues/detail?id=56068" target="_blank"><a href="https://code.google.com/p/android/issues/detail?id=56068">https://code.google.com/p/android/issues/detail?id=56068</a></a></p>
+<p>1、首先打开此链接<a href="http://tools.android.com/recent" target="_blank"><a href="http://tools.android.com/recent">http://tools.android.com/recent</a></a>，或者<a href="https://dl.google.com/android/studio/patches/updates.xml" target="_blank"><a href="https://dl.google.com/android/studio/patches/updates.xml">https://dl.google.com/android/studio/patches/updates.xml</a></a> ，找到最新的android studio版本，并且记住版本号，如0.1.9（Build number： 130.72944）</p>
+<p>2、然后打开你的android studio    - help - About，查看目前的build number</p>
+<p>3、修改此链接</p>
+<p><a href="http://dl.google.com/android/studio/patches/AI-(此处填入你现在的版本的build" target="_blank">http://dl.google.com/android/studio/patches/AI-(此处填入你现在的版本的build</a> number)-（此处填入你需要升级到的）-patch-win（这里对应windows）.jar</p>
+<p>打开此链接即可下载更新包</p>
+<p>4、进入你的android studio安装根目录，输入以下命令更新，注意此时关闭你的android studio</p>
+<p>java -classpath  AI-(此处填入你现在的版本的build number)-（此处填入你需要升级到的）-patch-win（这里对应windows）.jar  com.intellij.updater.Runner install .</p>
+<p>最后的点不能省略，代表安装到当前目录</p>
+<p>5、打开android studio  -help - About 查看目前版本号，更新则代表升级成功</p>
+<p>&nbsp;</p>
+<p>【gradle报错】</p>
+<p>参考链接：</p>
+<p><a href="http://www.cnblogs.com/timeng/archive/2013/05/17/3084185.html" target="_blank"><a href="http://www.cnblogs.com/timeng/archive/2013/05/17/3084185.html">http://www.cnblogs.com/timeng/archive/2013/05/17/3084185.html</a></a></p>
+<p><a href="http://stackoverflow.com/questions/16585869/android-studio-error-installing-gradle/16600297#16600297" target="_blank"><a href="http://stackoverflow.com/questions/16585869/android-studio-error-installing-gradle/16600297#16600297">http://stackoverflow.com/questions/16585869/android-studio-error-installing-gradle/16600297#16600297</a></a></p>
+<p><a href="http://stackoverflow.com/questions/16727505/android-studio-project-structure-not-coming-properly/16943005#16943005" target="_blank"><a href="http://stackoverflow.com/questions/16727505/android-studio-project-structure-not-coming-properly/16943005#16943005">http://stackoverflow.com/questions/16727505/android-studio-project-structure-not-coming-properly/16943005#16943005</a></a></p>
+<p><a href="http://stackoverflow.com/questions/16586674/failed-to-import-new-gradle-project-in-android-studio/16620500#16620500" target="_blank"><a href="http://stackoverflow.com/questions/16586674/failed-to-import-new-gradle-project-in-android-studio/16620500#16620500">http://stackoverflow.com/questions/16586674/failed-to-import-new-gradle-project-in-android-studio/16620500#16620500</a></a></p>
+<p>这个问题主要表现形式为安装报错或者是安装成功之后新建的project编译不能进行，idea提示报错（导入原来的eclipse项目似乎不会遇到此问题），原因是gradle环境未安装，idea好像因为被墙不能自动下载gradle</p>
+<p>1、先通过此链接或者其他方式下载gradle <a href="http://download.csdn.net/detail/zjilvufe/5395393" target="_blank"><a href="http://download.csdn.net/detail/zjilvufe/5395393">http://download.csdn.net/detail/zjilvufe/5395393</a></a></p>
+<p>2、解压到任意的位置，并且将其bin的路径加入到系统环境Path中</p>
+<p>3、完成之后在cmd中输入gradle -v验证是否成功</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/android/">android</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"wheam"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:wheam.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/android/">android</a><small>8</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>2</small></li>
+  
+    <li><a href="/categories/原创/">原创</a><small>2</small></li>
+  
+    <li><a href="/categories/心情/">心情</a><small>9</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="100" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=100&fansRow=1&ptype=1&speed=50&skin=5&isTitle=1&noborder=0&isWeibo=0&isFans=0&uid=1826358844&verifier=b2640eff&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 wheam
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
